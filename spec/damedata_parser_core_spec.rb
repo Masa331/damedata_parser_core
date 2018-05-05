@@ -1,9 +1,5 @@
-RSpec.describe DamedataParserCore do
-  it "has a version number" do
-    expect(DamedataParserCore::VERSION).not_to be nil
-  end
-
-  it "does something useful" do
-    expect(false).to eq(true)
+RSpec.describe ParserCore do
+  it "does not have any tests" do
+    expect(1).to eq(1)
   end
 end
