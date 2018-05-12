@@ -40,8 +40,14 @@ module ParserCore
 
       elements = raw.locate([*locator].join('/'))
 
-      elements.map do |element|
-        klass.new(element)
+      if klass == String && locator.size == 2
+        elements.map do |element|
+          klass.new(element.nodes.first)
+        end
+      else
+        elements.map do |element|
+          klass.new(element)
+        end
       end
     end
 

@@ -1,5 +1,7 @@
 module ParserCore
   module BaseBuilder
+    include Mega
+
     attr_accessor :name, :data, :options
 
     def initialize(name, data = {}, options = {})
@@ -33,6 +35,15 @@ module ParserCore
         element << content if content
       end
       element
+    end
+
+    def builder
+      root = Ox::Element.new(name)
+      if data.respond_to? :attributes
+        data.attributes.each { |k, v| root[k] = v }
+      end
+
+      root
     end
   end
 end
