@@ -2,12 +2,13 @@ module ParserCore
   module BaseBuilder
     include Mega
 
-    attr_accessor :name, :data, :options
+    attr_accessor :name, :data, :options, :namespaces
 
     def initialize(name, data = {}, options = {})
       @name = name
       @data = data || {}
       @options = options || {}
+      @namespaces = options[:namespaces] || {}
     end
 
     def to_xml
@@ -25,6 +26,7 @@ module ParserCore
 
     def build_element(name, content)
       element = Ox::Element.new(name)
+
       if content.respond_to? :attributes
         content.attributes.each { |k, v| element[k] = v }
       end
@@ -34,6 +36,7 @@ module ParserCore
       else
         element << content if content
       end
+
       element
     end
 
