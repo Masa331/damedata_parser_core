@@ -31,7 +31,7 @@ module ParserCore
 
       attributes.each { |k, v| element[k] = v }
 
-      element << content
+      element << content if content
 
       element
     end
