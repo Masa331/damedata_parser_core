@@ -21,7 +21,17 @@ module ParserCore
       element = raw.locate(locator.to_s).first
 
       if element
-        StringWithAttributes.new(element.text, element.attributes)
+        element.text
+      end
+    end
+
+    def attributes_at(locator)
+      return nil if raw.nil?
+
+      element = raw.locate(locator.to_s).first
+
+      if element
+        element.attributes
       end
     end
 
@@ -51,10 +61,8 @@ module ParserCore
       end
     end
 
-    def to_h_with_attrs
-      hash = HashWithAttributes.new({}, attributes)
-
-      hash
+    def to_h
+      {}
     end
   end
 end

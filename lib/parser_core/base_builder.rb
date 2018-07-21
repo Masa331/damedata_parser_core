@@ -24,26 +24,23 @@ module ParserCore
       Ox.dump(doc, dump_options)
     end
 
-    def build_element(name, content)
+    def build_element(name, content, attributes = {})
+      attributes ||= attributes || {}
+
       element = Ox::Element.new(name)
 
-      if content.respond_to? :attributes
-        content.attributes.each { |k, v| element[k] = v }
-      end
+      attributes.each { |k, v| element[k] = v }
 
-      if content.respond_to? :value
-        element << content.value if content.value
-      else
-        element << content if content
-      end
+      element << content
 
       element
     end
 
     def builder
       root = Ox::Element.new(name)
-      if data.respond_to? :attributes
-        data.attributes.each { |k, v| root[k] = v }
+
+      if data.key? :attributes
+        data[:attributes].each { |k, v| root[k] = v }
       end
 
       root
