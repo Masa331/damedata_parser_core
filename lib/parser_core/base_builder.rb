@@ -39,11 +39,21 @@ module ParserCore
     def builder
       root = Ox::Element.new(name)
 
+      root
+    end
+
+    def add_attributes_and_namespaces(node)
       if data.key? :attributes
-        data[:attributes].each { |k, v| root[k] = v }
+        data[:attributes].each { |k, v| node[k] = v }
       end
 
-      root
+      if namespaces.any?
+        namespaces.each do |prefix, uri|
+          node["xmlns:#{prefix}"] = uri
+        end
+      end
+
+      node
     end
   end
 end
