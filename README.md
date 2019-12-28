@@ -1,6 +1,7 @@
 # DameDataParserCore [![Build Status](https://travis-ci.org/Masa331/damedata_parser_core.svg?branch=master)](https://travis-ci.org/Masa331/damedata_parser_core)
 
-Unstable until 1.0.0
+Biolerplate code for my XML parsers and builders [Pohoda](https://github.com/Masa331/pohoda) and [Money S3](https://github.com/Masa331/moneys3)
+
 
 ## License
 
