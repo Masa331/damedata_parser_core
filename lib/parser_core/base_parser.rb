@@ -21,7 +21,11 @@ module ParserCore
       element = raw.locate(locator.to_s).first
 
       if element
-        element.text
+        if element.nodes.any? && element.nodes.all? { |node| node.is_a? Ox::CData }
+          element.nodes.first.value
+        else
+          element.text
+        end
       end
     end
 
